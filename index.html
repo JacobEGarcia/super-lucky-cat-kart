@@ -69,6 +69,6 @@ trailMat.opacity=THREE.MathUtils.lerp(trailMat.opacity,boost>0?.75:Math.max(0,(s
 let camTarget=player.position.clone().addScaledVector(tan,-11).add(new THREE.Vector3(0,4.8,0));camera.position.lerp(camTarget,1-Math.pow(.002,dt));let look=player.position.clone().addScaledVector(tan,8).add(new THREE.Vector3(0,1.5,0));camera.lookAt(look);drawMap();}
 function suffix(n){return n===1?'ST':n===2?'ND':n===3?'RD':'TH'}
 function drawMap(){let c=$('#map'),x=c.getContext('2d');x.clearRect(0,0,c.width,c.height);x.strokeStyle='#ffffff88';x.lineWidth=9;x.beginPath();for(let i=0;i<samples;i+=4){let p=trackPts[i],xx=120+p.x*1.25,yy=145+p.z*1.25;i?x.lineTo(xx,yy):x.moveTo(xx,yy)}x.closePath();x.stroke();function dot(U,col,size){let p=curve.getPointAt(U);x.fillStyle=col;x.beginPath();x.arc(120+p.x*1.25,145+p.z*1.25,size,0,7);x.fill()}racers.forEach(r=>dot(r.u,'#fff',5));dot(u,'#ffd11a',9)}
-function animate(t){requestAnimationFrame(animate);motes.rotation.y+=.00008;let dt=Math.min(.033,(t-last)/1000);last=t;update(dt,t);renderer.render(scene,camera)}animate(performance.now());
+function animate(t){requestAnimationFrame(animate);motes.rotation.y+=.00008;let dt=Math.min(.1,(t-last)/1000);last=t;update(dt,t);renderer.render(scene,camera)}animate(performance.now());
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 </script></body></html>
